@@ -7,33 +7,16 @@ const show_advice = document.querySelector('#show_advice');
 const show_all_advice = document.querySelector('#show_all_advice');
 const random_advice = document.querySelector('#random_advice');
 
-const check_values = () => {
-    if (input.value.length === 0) {
-        console.log('pusty');
-        return false;
-    }
-    advice.forEach(item => {
-        if (item === input.value) {
-            console.log("jest");
-            random_advice.textContent = `"${item}" Taka porada już istnieje. Nie możesz jej dodać.`;
-            return false;
-        } else {
-           return true;
-        }
-    });
-    console.log(advice);
-};
-
 const f_add_advice = (e) => {
     e.preventDefault();
     random_advice.textContent = '';
-    check_values();
+    advice.push(input.value);
 };
 
 const f_reset = (e) => {
     e.preventDefault();
     random_advice.textContent = '';
-    while (advice.length > 5) {
+    while (advice.length > 6) {
         advice.pop();
     }
 };
