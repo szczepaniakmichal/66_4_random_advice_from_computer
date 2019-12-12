@@ -1,4 +1,4 @@
-let advice = ['Nie poddawaj się!', 'Dasz radę!', 'Głowa do góry!', 'Idź spać, jutro będzie lepiej!'];
+let advice = ['Nie poddawaj się!', 'Dasz radę!', 'Głowa do góry!', 'Idź spać, jutro będzie lepiej!', 'A może cukierka?'];
 
 const input = document.querySelector('#advice');
 const add_advice = document.querySelector('#add_advice');
@@ -6,24 +6,33 @@ const reset = document.querySelector('#reset');
 const show_advice = document.querySelector('#show_advice');
 const show_all_advice = document.querySelector('#show_all_advice');
 const random_advice = document.querySelector('#random_advice');
-let advice_lenght = advice.length;
-console.log(advice_lenght);
+
+const check_values = () => {
+    if (input.value.length === 0) {
+        return false;
+    }
+    advice.forEach(item => {
+        if (item === input.value) {
+            random_advice.textContent = `"${item}" Taka porada już istnieje. Nie możesz jej dodać.`;
+            return false;
+        }
+    });
+};
 
 const f_add_advice = (e) => {
     e.preventDefault();
     random_advice.textContent = '';
-
-    advice.push(input.value);
-    console.log(advice);
+    if (check_values()) {
+        advice.push(input.value);
+    }
 };
 
 const f_reset = (e) => {
     e.preventDefault();
     random_advice.textContent = '';
-    while (advice.length > 4) {
+    while (advice.length > 5) {
         advice.pop();
     }
-    console.log(advice);
 };
 
 const f_show_all_advice = (e) => {
